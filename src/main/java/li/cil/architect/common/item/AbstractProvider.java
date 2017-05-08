@@ -2,6 +2,7 @@ package li.cil.architect.common.item;
 
 import li.cil.architect.common.config.Constants;
 import li.cil.architect.common.config.Settings;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -162,7 +163,9 @@ public abstract class AbstractProvider extends AbstractItem {
 
         if (isBound(stack)) {
             final BlockPos pos = getPosition(stack);
-            tooltip.add(I18n.format(Constants.TOOLTIP_PROVIDER_TARGET, pos.getX(), pos.getY(), pos.getZ()));
+//            tooltip.add(I18n.format(Constants.TOOLTIP_PROVIDER_TARGET, pos.getX(), pos.getY(), pos.getZ()));
+            IBlockState state = player.world.getBlockState(pos);
+            tooltip.add(String.format("Bound to %s", state.getBlock().getLocalizedName()));
         }
     }
 
